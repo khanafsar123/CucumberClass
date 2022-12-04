@@ -1,2 +1,19 @@
-package cucumberTool;public class RunnerClass {
+package cucumberTool;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+        features = "src\\test\\java\\cucumberTool\\login.feature"
+
+)
+
+
+
+
+
+
+public class RunnerClass {
 }
