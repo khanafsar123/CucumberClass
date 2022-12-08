@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class StepDefClass {
 
-   WebDriver driver;
+   /*WebDriver driver;
 
     @Given("user is navigated to HRMS application")
     public void user_is_navigated_to_hrms_application() {
@@ -50,5 +50,5 @@ public class StepDefClass {
             System.out.println("Test is failed");
         }
 
-    }
+    }*/
 }

@@ -8,27 +8,34 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utils.CommonMethods;
+import utils.ConfigReader;
 
 import java.util.concurrent.TimeUnit;
 
-public class loginSteps {
-    WebDriver driver;
+public class loginSteps extends CommonMethods {
+   // WebDriver driver; be
 
     @Given("user is navigated to HRMS application")
     public void user_is_navigated_to_hrms_application() {
-        WebDriverManager.chromedriver().setup();
-        driver=new ChromeDriver();
-        driver.get("http://hrm.syntaxtechs.net/humanresources/symfony/web/index.php/auth/login%22");
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+        openBrowserAndLaunchApplication();
+
+        //because we are calling the method
+//        WebDriverManager.chromedriver().setup();
+//        driver=new ChromeDriver();
+//        driver.get("http://hrm.syntaxtechs.net/humanresources/symfony/web/index.php/auth/login%22");
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        driver.manage().window().maximize();
     }
 
     @When("user enters valid username and valid password")
     public void user_enters_valid_username_and_valid_password() {
         WebElement userName = driver.findElement(By.xpath("//input[@id = 'txtUsername']"));
-        userName.sendKeys("admin");
+        sendText(userName, ConfigReader.getPropertyValue("username"));
+        //userName.sendKeys(ConfigReader.getPropertyValue("username"));
         WebElement password = driver.findElement(By.xpath("//input[@id = 'txtPassword']"));
-        password.sendKeys("Hum@nhrm123");
+       sendText(password, ConfigReader.getPropertyValue("password"));
+        // password.sendKeys(ConfigReader.getPropertyValue("password"));
 
     }
 
