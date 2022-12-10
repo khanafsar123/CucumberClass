@@ -8,13 +8,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.LoginPage;
 import utils.CommonMethods;
 import utils.ConfigReader;
 
 import java.util.concurrent.TimeUnit;
 
 public class loginSteps extends CommonMethods {
-   // WebDriver driver; be
+
+
+
+
+
+   // WebDriver driver;
 
     @Given("user is navigated to HRMS application")
     public void user_is_navigated_to_hrms_application() {
@@ -30,19 +36,36 @@ public class loginSteps extends CommonMethods {
 
     @When("user enters valid username and valid password")
     public void user_enters_valid_username_and_valid_password() {
+        //LoginPage login = new LoginPage();
+        //   WebElement usernameField = driver.findElement(By.id("txtUsername"));
+        // usernameField.sendKeys(ConfigReader.getPropertyValue("username"));
+        sendText(login.usernameTextField, ConfigReader.getPropertyValue("username"));
+        //  WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        //    passwordField.sendKeys(ConfigReader.getPropertyValue("password"));
+        sendText(login.passwordTextField, ConfigReader.getPropertyValue("password"));
+
+
+
+     /*
         WebElement userName = driver.findElement(By.xpath("//input[@id = 'txtUsername']"));
         sendText(userName, ConfigReader.getPropertyValue("username"));
         //userName.sendKeys(ConfigReader.getPropertyValue("username"));
         WebElement password = driver.findElement(By.xpath("//input[@id = 'txtPassword']"));
        sendText(password, ConfigReader.getPropertyValue("password"));
-        // password.sendKeys(ConfigReader.getPropertyValue("password"));
+        // password.sendKeys(ConfigReader.getPropertyValue("password"));*/
 
     }
 
     @When("user clicks on login button")
     public void user_clicks_on_login_button() {
-        WebElement logIn = driver.findElement(By.xpath("//input[@name = 'Submit']"));
-        logIn.click();
+      //  LoginPage login = new LoginPage();
+        //  WebElement loginButton = driver.findElement(By.id("btnLogin"));
+        click(login.loginButton);
+
+
+
+     /*   WebElement logIn = driver.findElement(By.xpath("//input[@name = 'Submit']"));
+        logIn.click();*/
     }
 
     @Then("user is successfully logged in")
@@ -56,4 +79,47 @@ public class loginSteps extends CommonMethods {
         }
 
     }
+
+
+    @When("user enters ess username and ess password")
+    public void user_enters_ess_username_and_ess_password() {
+                  //  LoginPage login = new LoginPage();
+            // WebElement usernameField = driver.findElement(By.id("txtUsername"));
+            sendText(login.usernameTextField, "asmahuma321");
+            //   WebElement passwordField = driver.findElement(By.id("txtPassword"));
+            sendText(login.passwordTextField, "Hum@nhrm123");
+
+
+
+
+       /* WebElement usernameField = driver.findElement(By.id("txtUsername"));
+        sendText(usernameField, "asmahuma321");
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        sendText(passwordField, "Hum@nhrm123");*/
+    }
+
+    @When("user enters invalid username and password")
+    public void user_enters_invalid_username_and_password() {
+       // LoginPage login = new LoginPage();
+        // WebElement usernameField = driver.findElement(By.id("txtUsername"));
+        sendText(login.usernameTextField, "admin123");
+        //  WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        sendText(login.passwordTextField, "Hum@nhrm");
+
+
+
+        /*WebElement usernameField = driver.findElement(By.id("txtUsername"));
+        sendText(usernameField, "admin123");
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        sendText(passwordField, "Hum@nhrm");*/
+    }
+
+    @Then("error message displayed")
+    public void error_message_displayed() {
+        System.out.println("Error message displayed");
+    }
+
+
+
+
 }

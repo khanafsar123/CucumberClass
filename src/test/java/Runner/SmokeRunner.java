@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features" ,
         glue = "steps" ,
         dryRun = false ,
-        tags = "@sprint4 ",
-        monochrome = true,
+        tags = "@tc1103",
+        monochrome = false,
         plugin = {"pretty"}
 )
 
