@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features" ,
         glue = "steps" ,
         dryRun = false ,
-        tags = "@tc1103",
+        tags = "@sprint3",
         monochrome = false,
         plugin = {"pretty"}
 )

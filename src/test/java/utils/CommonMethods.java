@@ -16,8 +16,9 @@ import java.util.concurrent.TimeUnit;
 
 public class CommonMethods extends PageInitializer {
 
+
     public static WebDriver driver;
-    // launch browser and get the website
+    //launch browser and get the website
     public static void openBrowserAndLaunchApplication() {
         // getting properties      ( path)
         ConfigReader.configReader(Constants.CONFIGURATION_FILEPATH);
@@ -47,6 +48,7 @@ public class CommonMethods extends PageInitializer {
 
         // initilizer the object
         intializePageObjects();
+
     }
 
 

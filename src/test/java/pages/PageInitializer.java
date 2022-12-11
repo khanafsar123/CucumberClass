@@ -5,6 +5,7 @@ public class PageInitializer {
     public static DashboardPage dashboard;
 
     public static AddEmployeePage addEmployee;
+    public static EmployeeListPage employeeList;
 
 
 
@@ -14,6 +15,7 @@ public class PageInitializer {
         login = new LoginPage();
         dashboard = new DashboardPage();
         addEmployee = new AddEmployeePage();
+        employeeList = new EmployeeListPage();
     }
 
 
