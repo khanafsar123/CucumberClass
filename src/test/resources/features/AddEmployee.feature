@@ -41,3 +41,7 @@ Feature: Add Employee
       |zara    |MS        |camilullah|
       |birgul  |MS        |ozgin     |
       |alina   |MS        |bob       |
+
+  @excel
+  Scenario: Adding multiple employees using excel file
+    When user adds multiple employee from excel using "EmployeeData" and verify it
