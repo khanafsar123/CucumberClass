@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
@@ -101,8 +102,67 @@ public class AddEmployeeSteps extends CommonMethods {
 
     @When("user adds multiple employee from excel using {string} and verify it")
     public void user_adds_multiple_employee_from_excel_using_and_verify_it(String sheetName) throws InterruptedException {
-
         List<Map<String, String>> empFromExcel =
+                ExcelReader.excelListIntoMap(Constants.TESTDATA_FILEPATH, sheetName);
+
+
+        //it returns one map from list of maps
+        Iterator<Map<String, String>> itr = empFromExcel.iterator();
+        while (itr.hasNext()){
+            //it returns the key and value for employee from excel
+            Map<String, String> mapNewEmp = itr.next();
+
+            sendText(addEmployee.firstNameField, mapNewEmp.get("firstName"));
+            sendText(addEmployee.middleNameField, mapNewEmp.get("middleName"));
+            sendText(addEmployee.lastNameField, mapNewEmp.get("lastName"));
+            String empIdValue = addEmployee.empIdLocator.getAttribute("value");
+            sendText(addEmployee.photograph, mapNewEmp.get("photograph"));
+            if(!addEmployee.checkBox.isSelected()){
+                click(addEmployee.checkBox);
+            }
+            sendText(addEmployee.createusernameField, mapNewEmp.get("username"));
+            sendText(addEmployee.createpasswordField, mapNewEmp.get("password"));
+            sendText(addEmployee.confirmpasswordField, mapNewEmp.get("confirmPassword"));
+            click(addEmployee.saveButton);
+            System.out.println("click taken on save button");
+            //verification is in home-work
+            Thread.sleep(3000);
+
+            click(dashboard.empListOption);
+            Thread.sleep(2000);
+            System.out.println("click taken on emp list option");
+
+            //to search the employee, we use emp id what we captured from attribute
+            sendText(employeeList.empSearchIdField, empIdValue);
+            click(employeeList.searchButton);
+
+            //verifying the employee added from the excel file
+
+            List<WebElement> rowData =
+                    driver.findElements(By.xpath("//*[@id='resultTable']/tbody/tr"));
+
+
+            for (int i =0; i<rowData.size(); i++){
+                System.out.println("I am inside the loop and worried about josh");
+                //getting the text of every element from here and storing it into string
+                String rowText = rowData.get(i).getText();
+                System.out.println(rowText);
+
+                String expectedData = empIdValue + " " + mapNewEmp.get("firstName")
+                        + " " + mapNewEmp.get("middleName") + " " + mapNewEmp.get("lastName");
+
+                //verifying the exact details  of the employee
+                Assert.assertEquals(expectedData, rowText);
+
+            }
+
+            click(dashboard.addEmployeeOption);
+            Thread.sleep(2000);
+        }
+    }
+    }
+
+       /* List<Map<String, String>> empFromExcel =
                 ExcelReader.excelListIntoMap(Constants.TESTDATA_FILEPATH, sheetName);
 
 
@@ -135,6 +195,6 @@ public class AddEmployeeSteps extends CommonMethods {
         }
 
 
-    }
+    }*/
 
-}
+
