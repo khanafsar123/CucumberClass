@@ -9,9 +9,9 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features" ,
         glue = "steps" ,
         dryRun = false ,
-        tags = "@tc1102",
+        tags = "@api",
         monochrome = false,
-        plugin = {"pretty", "html:target/cucumber.html", "json:target/cucumber.json"}
+        plugin = {"pretty", "html:target/cucumber.html", "json:target/cucumber.json", "rerun:target/failed.txt"}
 )
 
 

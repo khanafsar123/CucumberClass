@@ -15,7 +15,7 @@ Feature: US-321 Searching the employee
     And user clicks on search button
     Then user see employee information is displayed
 
-@sprint4 @test
+@sprint4 @test @khanafsar
   Scenario: Search employee by name
     #Given user is navigated to HRMS application
     #When user enters valid username and valid password

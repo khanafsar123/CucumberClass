@@ -71,6 +71,7 @@ public class AddEmployeeSteps extends CommonMethods {
     public void user_enter_and_for_adding_multiple_employees(String firstNameValue, String lastNameValue) {
         sendText(addEmployee.firstNameField, firstNameValue);
         sendText(addEmployee.lastNameField, lastNameValue);
+
     }
 
 
@@ -102,8 +103,7 @@ public class AddEmployeeSteps extends CommonMethods {
 
     @When("user adds multiple employee from excel using {string} and verify it")
     public void user_adds_multiple_employee_from_excel_using_and_verify_it(String sheetName) throws InterruptedException {
-        List<Map<String, String>> empFromExcel =
-                ExcelReader.excelListIntoMap(Constants.TESTDATA_FILEPATH, sheetName);
+        List<Map<String, String>> empFromExcel = ExcelReader.excelListIntoMap(Constants.TESTDATA_FILEPATH, sheetName);
 
 
         //it returns one map from list of maps

@@ -4,6 +4,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.CommonMethods;
 import utils.ConfigReader;
 
@@ -40,10 +41,28 @@ public class EmployeeSearchSteps extends CommonMethods {
     }
     @When("user enters valid employee name")
     public void user_enters_valid_employee_name() {
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id("empsearch_employee_name_empName")));
 
-        sendText(employeeList.empSearchNameField, "ms");
-        /*WebElement searchNameField = driver.findElement(By.id("empsearch_employee_name_empName"));
-        sendText(searchNameField, "dawggy");*/
+      // click(employeeList.empSearchNameField);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
+       // sendText(employeeList.empSearchNameField, "dawggy");
+        WebElement searchNameField = driver.findElement(By.id("empsearch_employee_name_empName"));
+        sendText(searchNameField, "dawggy");
+
+        click(employeeList.searchButton);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
